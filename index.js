@@ -16,8 +16,7 @@ try {
     HistorialLocal = [];
 }
 
-console.log(HistorialLocal);
-
+//console.log(HistorialLocal);
 
 ejecutar()
 
@@ -25,7 +24,7 @@ async function ejecutar() {
     let Fecha = new Date(Date.now());
     Fecha.setDate(Fecha.getDate() - 1);
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 100; i++) {
         let FechaEnviable = completarConCeros(Fecha.getDate(),2) + "-" + completarConCeros(Fecha.getMonth() + 1, 2) + "-" + Fecha.getFullYear().toString().substring(2, 4);
         //console.log(FechaEnviable);
         if (HistorialLocalMapa.has(FechaEnviable)) {
@@ -39,19 +38,9 @@ async function ejecutar() {
             
         }
 
-
         Fecha.setDate(Fecha.getDate() - 1);
-        
     }
-
-    /*
-    console.log(await obtenerDatosFecha("20-10-23"));
-    await esperar(5000);
-    console.log(await obtenerDatosFecha("19-10-23"));
-    */
 }
-
-
 
 
 function completarConCeros(Texto, Cantidad) {
@@ -85,7 +74,6 @@ function esperar(Milisegundos) {
 function obtenerDatosFecha(FechaBuscada) {
     return new Promise((resolve, reject) => {
 
-
         const options = {
             hostname: 'www.cotizacion-dolar.com.ar',
             port: 443,
@@ -112,8 +100,6 @@ function obtenerDatosFecha(FechaBuscada) {
                     body = Buffer.concat(body).toString();
                     //console.log(body);
                     resolve(obtenerPrecio(body));
-
-
 
                 } catch (e) {
                     console.log(e);
